@@ -1,72 +1,72 @@
 define([
-    'core/js/models/questionModel'
+  'core/js/models/questionModel'
 ], function(QuestionModel) {
-    
-    var ComponentNameModel = QuestionModel.extend({
 
-        /**
-         * Used to restore the user's answers when revisiting the page or course
-         */
-        restoreUserAnswers: function() {
-            if (!this.get("_isSubmitted")) {
-                return;
-            }
+  class ComponentNameModel extends QuestionModel {
 
-            // The user answer is retrieved here
-            // This value can then be used to set individual answers on items
-            var userAnswer = this.get("_userAnswer");
+    /**
+     * Used to restore the user's answers when revisiting the page or course
+     */
+    restoreUserAnswers() {
+      if (!this.get("_isSubmitted")) {
+        return;
+      }
 
-            this.setQuestionAsSubmitted();
-            this.markQuestion();
-            this.setScore();
-            this.setupFeedback();
-        },
+      // The user answer is retrieved here
+      // This value can then be used to set individual answers on items
+      var userAnswer = this.get("_userAnswer");
 
-        /**
-         * Used to check if the user is allowed to submit the question
-         * @returns {boolean}
-         */
-        canSubmit: function() {},
+      this.setQuestionAsSubmitted();
+      this.markQuestion();
+      this.setScore();
+      this.setupFeedback();
+    }
 
-        /**
-         * This evaluates the user's answer and stores the value
-         * This value can then be used later on e.g. by the view to show the user's answer
-         */
-        storeUserAnswer: function() {
-            // Expand on this to retrieve the user's answer as a single value
-            var userAnswer;
+    /**
+     * Used to check if the user is allowed to submit the question
+     * @returns {boolean}
+     */
+    canSubmit() {}
 
-            this.set("_userAnswer", userAnswer);
-        },
+    /**
+     * This evaluates the user's answer and stores the value
+     * This value can then be used later on e.g. by the view to show the user's answer
+     */
+    storeUserAnswer() {
+      // Expand on this to retrieve the user's answer as a single value
+      var userAnswer;
 
-        /**
-         * Used to establish if the question is correct or not
-         * @returns {boolean}
-         */
-        isCorrect: function() {},
+      this.set("_userAnswer", userAnswer);
+    }
 
-        /**
-         * Used to set the score based upon the _questionWeight
-         */
-        setScore: function() {
-            // You may wish to expand on the following
-            var questionWeight = this.get('_questionWeight');
-            var score = this.get('_isCorrect') ? questionWeight : 0;
-            this.set('_score', score);
-        },
+    /**
+     * Used to establish if the question is correct or not
+     * @returns {boolean}
+     */
+    isCorrect() {}
 
-        /**
-         * Used by the question to determine if the question is incorrect or partly correct
-         * @returns {boolean}
-         */
-        isPartlyCorrect: function() {},
+    /**
+     * Used to set the score based upon the _questionWeight
+     */
+    setScore() {
+      // You may wish to expand on the following
+      var questionWeight = this.get('_questionWeight');
+      var score = this.get('_isCorrect') ? questionWeight : 0;
+      this.set('_score', score);
+    }
 
-        /**
-         * Resets the stored user answer
-         */
-        resetUserAnswer: function() {},
-    });
+    /**
+     * Used by the question to determine if the question is incorrect or partly correct
+     * @returns {boolean}
+     */
+    isPartlyCorrect() {}
 
-    return ComponentNameModel;
+    /**
+     * Resets the stored user answer
+     */
+    resetUserAnswer() {}
+  }
+
+  return ComponentNameModel;
 
 });
