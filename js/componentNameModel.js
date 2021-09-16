@@ -8,13 +8,11 @@ define([
      * Used to restore the user's answers when revisiting the page or course
      */
     restoreUserAnswers() {
-      if (!this.get("_isSubmitted")) {
-        return;
-      }
+      if (!this.get('_isSubmitted')) return;
 
       // The user answer is retrieved here
       // This value can then be used to set individual answers on items
-      var userAnswer = this.get("_userAnswer");
+      const userAnswer = this.get('_userAnswer');
 
       this.setQuestionAsSubmitted();
       this.markQuestion();
@@ -34,9 +32,8 @@ define([
      */
     storeUserAnswer() {
       // Expand on this to retrieve the user's answer as a single value
-      var userAnswer;
-
-      this.set("_userAnswer", userAnswer);
+      const userAnswer;
+      this.set('_userAnswer', userAnswer);
     }
 
     /**
@@ -50,8 +47,8 @@ define([
      */
     setScore() {
       // You may wish to expand on the following
-      var questionWeight = this.get('_questionWeight');
-      var score = this.get('_isCorrect') ? questionWeight : 0;
+      const questionWeight = this.get('_questionWeight');
+      const score = this.get('_isCorrect') ? questionWeight : 0;
       this.set('_score', score);
     }
 
