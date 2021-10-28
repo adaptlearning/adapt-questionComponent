@@ -60,4 +60,27 @@ export default class ComponentNameModel extends QuestionModel {
    * Resets the stored user answer
    */
   resetUserAnswer() {}
+
+   /**
+   * Used to reset the question when revisiting the component
+   * @param {string} [type] - the type of reset e.g. hard/soft
+   */
+  reset(type = 'hard', canReset = this.get('_canReset')) {
+    super.reset(type, canReset);
+  }
+
+  /**
+   * Used by adapt-contrib-spoor to get the user's answers in the format
+   * required by the cmi.interactions.n.student_response data field
+   * @returns {string} a string representation of the user's answer
+   */
+   getResponse() {}
+
+   /**
+    * Used by adapt-contrib-spoor to get the type of this question in the
+    * format required by the cmi.interactions.n.type data field.
+    * Please note the answer will not store correctly unless this function returns a valid string
+    * @returns {string} one of the following: choice, matching, numeric, fill-in
+    */
+   getResponseType() {}
 }

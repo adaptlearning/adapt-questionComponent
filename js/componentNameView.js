@@ -13,12 +13,6 @@ export default class ComponentNameView extends QuestionView {
   enableQuestion() {}
 
   /**
-   * Used to reset the question when revisiting the component
-   * @param {string} [type] - the type of reset e.g. hard/soft
-   */
-  resetQuestionOnRevisit(type) {}
-
-  /**
    * Used by question components instead of preRender
    */
   setupQuestion() {}
@@ -58,20 +52,5 @@ export default class ComponentNameView extends QuestionView {
    * Should use the values stored in this.storeUserAnswer
    */
   hideCorrectAnswer() {}
-
-  /**
-   * Used by adapt-contrib-spoor to get the user's answers in the format
-   * required by the cmi.interactions.n.student_response data field
-   * @returns {string} a string representation of the user's answer
-   */
-  getResponse() {}
-
-  /**
-   * Used by adapt-contrib-spoor to get the type of this question in the
-   * format required by the cmi.interactions.n.type data field.
-   * Please note the answer will not store correctly unless this function returns a valid string
-   * @returns {string} one of the following: choice, matching, numeric, fill-in
-   */
-  getResponseType() {}
 
 }
