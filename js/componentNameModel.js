@@ -33,7 +33,12 @@ export default class ComponentNameModel extends QuestionModel {
    * This value can then be used later on e.g. by the view to show the user's answer
    */
   storeUserAnswer() {
-    // Expand on this to retrieve the user's answer as a single value
+    // Note: _userAnswer can only contain arrays, booleans and numbers. 
+    // Each array must contain the same type, such that only arrays of arrays, 
+    // arrays of booleans and arrays of numbers are allowed. 
+    // [[true, false], [0, 1, 2, 3]]
+    // [0, 1, 2, 3]
+    // [true, false]
     const userAnswer;
     this.set('_userAnswer', userAnswer);
   }
