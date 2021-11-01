@@ -8,8 +8,12 @@ export default class ComponentNameModel extends QuestionModel {
   restoreUserAnswers() {
     if (!this.get('_isSubmitted')) return;
 
-    // The user answer is retrieved here
-    // This value can then be used to set individual answers on items
+    // Note: _userAnswer can only contain arrays, booleans and numbers. 
+    // Each array must contain the same type, such that only arrays of arrays, 
+    // arrays of booleans and arrays of numbers are allowed. 
+    // [[true, false], [0, 1, 2, 3]]
+    // [0, 1, 2, 3]
+    // [true, false]
     const userAnswer = this.get('_userAnswer');
 
     this.setQuestionAsSubmitted();
