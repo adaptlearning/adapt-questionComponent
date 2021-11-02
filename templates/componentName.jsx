@@ -6,9 +6,9 @@ export default function (model, view) {
   const data = model.toJSON();
   data._globals = Adapt.course.get('_globals');
   return (
-    <div className="component__inner accordion__inner">
+    <div className="component__inner component__inner">
 
-      <div className="component__widget accordion__widget">
+      <div className="component__widget component__widget">
         <div class="componentName__inner component__inner" role="region" aria-label="{{_globals._components._componentName.ariaRegion}}">
           {templates.component(model, view)}
 
@@ -17,7 +17,7 @@ export default function (model, view) {
           </div>
 
           {/* This ensures that the standard question component buttons are automatically rendered into your view */}
-          <div class="buttons"></div>
+          <div class="btn__container"></div>
         </div>
       </div>
     </div>
