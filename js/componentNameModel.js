@@ -8,9 +8,9 @@ export default class ComponentNameModel extends QuestionModel {
   restoreUserAnswers() {
     if (!this.get('_isSubmitted')) return;
 
-    // Note: _userAnswer can only contain arrays, booleans and numbers. 
-    // Each array must contain the same type, such that only arrays of arrays, 
-    // arrays of booleans and arrays of numbers are allowed. 
+    // Note: _userAnswer can only contain arrays, booleans and numbers.
+    // Each array must contain the same type, such that only arrays of arrays,
+    // arrays of booleans and arrays of numbers are allowed.
     // [[true, false], [0, 1, 2, 3]]
     // [0, 1, 2, 3]
     // [true, false]
@@ -33,13 +33,13 @@ export default class ComponentNameModel extends QuestionModel {
    * This value can then be used later on e.g. by the view to show the user's answer
    */
   storeUserAnswer() {
-    // Note: _userAnswer can only contain arrays, booleans and numbers. 
-    // Each array must contain the same type, such that only arrays of arrays, 
-    // arrays of booleans and arrays of numbers are allowed. 
+    // Note: _userAnswer can only contain arrays, booleans and numbers.
+    // Each array must contain the same type, such that only arrays of arrays,
+    // arrays of booleans and arrays of numbers are allowed.
     // [[true, false], [0, 1, 2, 3]]
     // [0, 1, 2, 3]
     // [true, false]
-    const userAnswer;
+    let userAnswer;
     this.set('_userAnswer', userAnswer);
   }
 
@@ -70,7 +70,7 @@ export default class ComponentNameModel extends QuestionModel {
    */
   resetUserAnswer() {}
 
-   /**
+  /**
    * Used to reset the question when revisiting the component
    * @param {string} [type] - the type of reset e.g. hard/soft
    */
@@ -79,17 +79,30 @@ export default class ComponentNameModel extends QuestionModel {
   }
 
   /**
+   * Used by the question view to reset the options of the component.
+   * This is triggered when the reset button is clicked so it shouldn't be a full reset.
+   */
+  resetQuestion() {}
+
+  /**
    * Used by adapt-contrib-spoor to get the user's answers in the format
    * required by the cmi.interactions.n.student_response data field
    * @returns {string} a string representation of the user's answer
    */
-   getResponse() {}
+  getResponse() {}
 
-   /**
+  /**
     * Used by adapt-contrib-spoor to get the type of this question in the
     * format required by the cmi.interactions.n.type data field.
     * Please note the answer will not store correctly unless this function returns a valid string
     * @returns {string} one of the following: choice, matching, numeric, fill-in
     */
-   getResponseType() {}
+  getResponseType() {}
+
+  /**
+   * This determines the show/hide of marking in the template.
+   * If shouldShowMarking the user will be given visual feedback on how they answered the question.
+   * Normally done through ticks and crosses by adding classes
+   */
+  shouldShowMarking() {}
 }
