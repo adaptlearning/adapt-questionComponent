@@ -1,6 +1,6 @@
 import QuestionView from 'core/js/views/questionView';
 
-export default class ComponentNameView extends QuestionView {
+class ComponentNameView extends QuestionView {
 
   /**
    * Used by question components instead of preRender
@@ -10,7 +10,6 @@ export default class ComponentNameView extends QuestionView {
   /**
    * Used by question components instead of postRender
    */
-
   onQuestionRendered() {}
 
   /**
@@ -18,11 +17,8 @@ export default class ComponentNameView extends QuestionView {
    */
   onCannotSubmit() {}
 
-  /**
-   * Resets the look and feel of the component
-   * This could also include resetting item data
-   * This is triggered when the reset button is clicked so it shouldn't be a full reset
-   */
-  resetQuestion() {}
-
 }
+
+ComponentNameView.template = 'componentName.jsx';
+
+export default ComponentNameView;

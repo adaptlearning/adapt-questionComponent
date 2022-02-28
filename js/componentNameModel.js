@@ -3,6 +3,16 @@ import QuestionModel from 'core/js/models/questionModel';
 export default class ComponentNameModel extends QuestionModel {
 
   /**
+   * Used to set model defaults
+   */
+  defaults() {
+    // Extend from the QuestionModel defaults
+    return QuestionModel.resultExtend('defaults', {
+      // TODO: Add your defaults here
+    });
+  }
+
+  /**
    * Used to restore the user's answers when revisiting the page or course
    */
   restoreUserAnswers() {
@@ -15,6 +25,8 @@ export default class ComponentNameModel extends QuestionModel {
     // [0, 1, 2, 3]
     // [true, false]
     const userAnswer = this.get('_userAnswer');
+
+    // TODO: Write your restoration code here
 
     this.setQuestionAsSubmitted();
     this.markQuestion();
@@ -29,6 +41,63 @@ export default class ComponentNameModel extends QuestionModel {
   canSubmit() {}
 
   /**
+   * Used to establish if the question is correct or not
+   * @returns {boolean}
+   */
+  isCorrect() {}
+
+  /**
+   * Used by the question to determine if the question is incorrect or partly correct
+   * @returns {boolean}
+   */
+  isPartlyCorrect() {}
+
+  /**
+   * Returns a numerical value between maxScore and minScore
+   * @type {number}
+   */
+   get score() {
+    return this.get('_isCorrect') ? this.maxScore : 0;
+  }
+
+  /**
+   * @type {number}
+   */
+  get maxScore() {
+    return this.get('_questionWeight');
+  }
+
+  /**
+   * @type {number}
+   */
+  get minScore() {
+    return 0;
+  }
+
+  /**
+   * This determines the show/hide of marking in the template.
+   * If shouldShowMarking the user will be given visual feedback on how they answered the question.
+   * Normally done through ticks and crosses by adding classes
+   */
+  shouldShowMarking() {}
+
+  /**
+   * Creates a string explaining the answer (or answer range) the learner should have chosen
+   * Used by ButtonsView to retrieve question-specific correct answer text for the ARIA
+   * 'live region' that gets updated when the learner selects the 'show correct answer' button
+   * @return {string}
+   */
+  getCorrectAnswerAsText() {}
+
+  /**
+   * Creates a string listing the answer the learner chose
+   * Used by ButtonsView to retrieve question-specific user answer text for the ARIA
+   * 'live region' that gets updated when the learner selects the 'hide correct answer' button
+   * @return {string}
+   */
+  getUserAnswerAsText() {}
+
+  /**
    * This evaluates the user's answer and stores the value
    * This value can then be used later on e.g. by the view to show the user's answer
    */
@@ -39,36 +108,12 @@ export default class ComponentNameModel extends QuestionModel {
     // [[true, false], [0, 1, 2, 3]]
     // [0, 1, 2, 3]
     // [true, false]
-    let userAnswer;
+    let userAnswer = null;
+
+    // TODO: Write your storage code here
+
     this.set('_userAnswer', userAnswer);
   }
-
-  /**
-   * Used to establish if the question is correct or not
-   * @returns {boolean}
-   */
-  isCorrect() {}
-
-  /**
-   * Used to set the score based upon the _questionWeight
-   */
-  setScore() {
-    // You may wish to expand on the following
-    const questionWeight = this.get('_questionWeight');
-    const score = this.get('_isCorrect') ? questionWeight : 0;
-    this.set('_score', score);
-  }
-
-  /**
-   * Used by the question to determine if the question is incorrect or partly correct
-   * @returns {boolean}
-   */
-  isPartlyCorrect() {}
-
-  /**
-   * Resets the stored user answer
-   */
-  resetUserAnswer() {}
 
   /**
    * Used to reset the question when revisiting the component
@@ -79,14 +124,22 @@ export default class ComponentNameModel extends QuestionModel {
   }
 
   /**
-   * Used by the question view to reset the options of the component.
-   * This is triggered when the reset button is clicked so it shouldn't be a full reset.
+   * Resets the user's selection
+   * This is triggered when the reset button is clicked.
    */
   resetQuestion() {}
 
   /**
+   * Resets the stored user answer
+   */
+  resetUserAnswer() {
+    this.set('_userAnswer', null);
+  }
+
+  /**
    * Used by adapt-contrib-spoor to get the user's answers in the format
    * required by the cmi.interactions.n.student_response data field
+   * 3-48, p.56 https://github.com/adaptlearning/scorm_docs/blob/master/SCORM%201.2/SCORM_1.2_RunTimeEnv.pdf
    * @returns {string} a string representation of the user's answer
    */
   getResponse() {}
@@ -95,14 +148,8 @@ export default class ComponentNameModel extends QuestionModel {
     * Used by adapt-contrib-spoor to get the type of this question in the
     * format required by the cmi.interactions.n.type data field.
     * Please note the answer will not store correctly unless this function returns a valid string
+    * 3-48, p.56 https://github.com/adaptlearning/scorm_docs/blob/master/SCORM%201.2/SCORM_1.2_RunTimeEnv.pdf
     * @returns {string} one of the following: choice, matching, numeric, fill-in
     */
   getResponseType() {}
-
-  /**
-   * This determines the show/hide of marking in the template.
-   * If shouldShowMarking the user will be given visual feedback on how they answered the question.
-   * Normally done through ticks and crosses by adding classes
-   */
-  shouldShowMarking() {}
 }
